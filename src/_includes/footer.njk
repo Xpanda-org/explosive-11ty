@@ -1,0 +1,142 @@
+<footer class="site-footer">
+    <div class="footer-container">
+        <!-- Footer Content Sections -->
+        <div class="footer-content">
+            <!-- Site Info Section -->
+            <div class="footer-section footer-info">
+                <div class="footer-branding">
+                    {% if site.logo %}
+                        <img src="{{ site.logo }}" alt="{{ site.title or 'Explosive Website' }}" class="footer-logo">
+                    {% else %}
+                        <h3 class="footer-title">{{ site.title or "Explosive Website" }}</h3>
+                    {% endif %}
+                </div>
+                {% if site.description %}
+                    <p class="footer-description">{{ site.description }}</p>
+                {% endif %}
+                
+                <!-- Social Links -->
+                {% if site.socialLinks %}
+                    <div class="social-links">
+                        <h4 class="social-title">Follow Us</h4>
+                        <ul class="social-list">
+                            {% for social in site.socialLinks %}
+                                <li class="social-item">
+                                    <a href="{{ social.url }}" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="{{ social.platform }}">
+                                        {% if social.icon %}
+                                            <span class="social-icon">{{ social.icon | safe }}</span>
+                                        {% endif %}
+                                        <span class="social-text">{{ social.platform }}</span>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+            
+            <!-- Quick Links Section -->
+            <div class="footer-section footer-links">
+                <h4 class="footer-section-title">Quick Links</h4>
+                <ul class="footer-nav">
+                    <li><a href="/" class="footer-link">Home</a></li>
+                    
+                    <!-- Static Pages in Footer -->
+                    {% set footerPages = collections.pages | sort(false, false, 'data.order') %}
+                    {% for page in footerPages %}
+                        {% if page.data.showInFooter !== false %}
+                            <li>
+                                <a href="{{ page.url }}" class="footer-link">
+                                    {{ page.data.navTitle or page.data.title }}
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    <!-- Additional Footer Links -->
+                    {% if site.footerLinks %}
+                        {% for link in site.footerLinks %}
+                            <li>
+                                <a href="{{ link.url }}" class="footer-link"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                                    {{ link.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+            
+            <!-- Collections Section -->
+            <div class="footer-section footer-collections">
+                <h4 class="footer-section-title">Collections</h4>
+                <ul class="footer-nav">
+                    {% set allPosts = collections.allPosts %}
+                    {% set uniqueCollections = allPosts | getUniqueCollections %}
+                    {% for collectionName in uniqueCollections %}
+                        {% set collectionData = collections.collectionData | find('name', collectionName) %}
+                        {% if not collectionData or collectionData.showInFooter !== false %}
+                            <li>
+                                <a href="/collections/{{ collectionName | slug }}/" class="footer-link">
+                                    {{ (collectionData and collectionData.displayName) or (collectionName | title) }}
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            <!-- Contact/Newsletter Section -->
+            {% if site.showNewsletter or site.contactInfo %}
+                <div class="footer-section footer-contact">
+                    {% if site.showNewsletter %}
+                        <h4 class="footer-section-title">Stay Updated</h4>
+                        <form class="newsletter-form" action="{{ site.newsletterAction or '#' }}" method="post">
+                            <label for="newsletter-email" class="sr-only">Email address</label>
+                            <div class="newsletter-input-group">
+                                <input type="email" id="newsletter-email" name="email" class="newsletter-input" placeholder="Enter your email" required>
+                                <button type="submit" class="newsletter-button">Subscribe</button>
+                            </div>
+                        </form>
+                    {% endif %}
+                    
+                    {% if site.contactInfo %}
+                        <div class="contact-info">
+                            <h4 class="footer-section-title">Contact</h4>
+                            {% if site.contactInfo.email %}
+                                <p><a href="mailto:{{ site.contactInfo.email }}" class="footer-link">{{ site.contactInfo.email }}</a></p>
+                            {% endif %}
+                            {% if site.contactInfo.phone %}
+                                <p><a href="tel:{{ site.contactInfo.phone }}" class="footer-link">{{ site.contactInfo.phone }}</a></p>
+                            {% endif %}
+                            {% if site.contactInfo.address %}
+                                <p class="contact-address">{{ site.contactInfo.address }}</p>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+        
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p class="copyright">
+                    &copy; {{ "now" | date("YYYY") }} {{ site.title or "Explosive Website" }}. 
+                    {% if site.copyrightText %}{{ site.copyrightText }}{% else %}All rights reserved.{% endif %}
+                </p>
+                
+                {% if site.footerBottomLinks %}
+                    <ul class="footer-bottom-links">
+                        {% for link in site.footerBottomLinks %}
+                            <li>
+                                <a href="{{ link.url }}" class="footer-bottom-link"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                                    {{ link.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</footer>

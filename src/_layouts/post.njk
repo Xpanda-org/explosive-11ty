@@ -1,0 +1,164 @@
+---
+layout: base.njk
+---
+
+<article class="post">
+    <!-- Post Header -->
+    <header class="post-header">
+        {% if featuredImage %}
+            <div class="post-featured-image">
+                <img src="{{ featuredImage }}" alt="{{ featuredImageAlt or title }}" class="featured-image">
+                {% if featuredImageCaption %}
+                    <figcaption class="featured-image-caption">{{ featuredImageCaption }}</figcaption>
+                {% endif %}
+            </div>
+        {% endif %}
+        
+        <div class="post-meta">
+            {% if postCollections %}
+                <div class="post-collections">
+                    {% for collection in postCollections %}
+                        {% set collectionData = collections.collectionData | find('name', collection) %}
+                        <a href="/collections/{{ collection | slug }}/" class="collection-tag"
+                           {% if collectionData and collectionData.color %}style="--collection-color: {{ collectionData.color }}"{% endif %}>
+                            {{ (collectionData and collectionData.displayName) or (collection | title) }}
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            
+            {% if date %}
+                <time class="post-date" datetime="{{ date | date('YYYY-MM-DD') }}">
+                    {{ date | dateDisplay }}
+                </time>
+            {% endif %}
+            
+            {% if author %}
+                <div class="post-author">
+                    {% if author.avatar %}
+                        <img src="{{ author.avatar }}" alt="{{ author.name }}" class="author-avatar">
+                    {% endif %}
+                    <span class="author-name">
+                        {% if author.url %}
+                            <a href="{{ author.url }}">{{ author.name }}</a>
+                        {% else %}
+                            {{ author.name }}
+                        {% endif %}
+                    </span>
+                </div>
+            {% endif %}
+            
+            {% if readingTime %}
+                <span class="reading-time">{{ readingTime }} min read</span>
+            {% endif %}
+        </div>
+    </header>
+    
+    <!-- Post Content -->
+    <div class="post-content">
+        {{ content | safe }}
+    </div>
+    
+    <!-- Media Gallery -->
+    {% if mediaGallery %}
+        <section class="media-gallery">
+            <h2>Gallery</h2>
+            <div class="gallery-grid">
+                {% for media in mediaGallery %}
+                    <div class="gallery-item">
+                        {% if media.type == 'image' %}
+                            <img src="{{ media.url }}" alt="{{ media.alt or media.caption }}" loading="lazy">
+                        {% elif media.type == 'video' %}
+                            <video controls{% if media.poster %} poster="{{ media.poster }}"{% endif %}>
+                                <source src="{{ media.url }}" type="{{ media.mimeType or 'video/mp4' }}">
+                                Your browser does not support the video tag.
+                            </video>
+                        {% endif %}
+                        {% if media.caption %}
+                            <figcaption class="gallery-caption">{{ media.caption }}</figcaption>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+    
+    <!-- Post Footer -->
+    <footer class="post-footer">
+        {% if tags %}
+            <div class="post-tags">
+                <h3>Tags</h3>
+                <ul class="tag-list">
+                    {% for tag in tags %}
+                        <li class="tag-item">
+                            <a href="/tags/{{ tag | slug }}/" class="tag-link">#{{ tag }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        
+        {% if showShareButtons %}
+            <div class="share-buttons">
+                <h3>Share this post</h3>
+                <div class="share-links">
+                    <a href="https://twitter.com/intent/tweet?url={{ site.url }}{{ page.url }}&text={{ title | urlencode }}" 
+                       class="share-link twitter" target="_blank" rel="noopener noreferrer">
+                        Twitter
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}" 
+                       class="share-link facebook" target="_blank" rel="noopener noreferrer">
+                        Facebook
+                    </a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ site.url }}{{ page.url }}" 
+                       class="share-link linkedin" target="_blank" rel="noopener noreferrer">
+                        LinkedIn
+                    </a>
+                    <a href="mailto:?subject={{ title | urlencode }}&body={{ site.url }}{{ page.url }}" 
+                       class="share-link email">
+                        Email
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+        
+        {% if lastModified %}
+            <div class="post-updated">
+                <small>Last updated: <time datetime="{{ lastModified | date('YYYY-MM-DD') }}">{{ lastModified | dateDisplay }}</time></small>
+            </div>
+        {% endif %}
+    </footer>
+    
+    <!-- Related Posts -->
+    {% if showRelatedPosts %}
+        <aside class="related-posts">
+            <h2>Related Posts</h2>
+            {% set relatedPosts = collections.allPosts | getRelatedPosts(postCollections, tags, 3) %}
+            {% if relatedPosts.length > 0 %}
+                <div class="related-posts-grid">
+                    {% for post in relatedPosts %}
+                        <article class="related-post-card">
+                            {% if post.data.featuredImage %}
+                                <div class="related-post-image">
+                                    <a href="{{ post.url }}">
+                                        <img src="{{ post.data.featuredImage }}" alt="{{ post.data.title }}" loading="lazy">
+                                    </a>
+                                </div>
+                            {% endif %}
+                            <div class="related-post-content">
+                                <h3 class="related-post-title">
+                                    <a href="{{ post.url }}">{{ post.data.title }}</a>
+                                </h3>
+                                {% if post.data.description %}
+                                    <p class="related-post-description">{{ post.data.description }}</p>
+                                {% endif %}
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>No related posts found.</p>
+            {% endif %}
+        </aside>
+    {% endif %}
+</article>

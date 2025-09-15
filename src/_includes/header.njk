@@ -1,0 +1,97 @@
+<header class="site-header">
+    <div class="header-container">
+        <!-- Site Logo/Title -->
+        <div class="site-branding">
+            <a href="/" class="site-logo">
+                {% if site.logo %}
+                    <img src="{{ site.logo }}" alt="{{ site.title or 'Explosive Website' }}" class="logo-image">
+                {% else %}
+                    <span class="logo-text">{{ site.title or "Explosive Website" }}</span>
+                {% endif %}
+            </a>
+            {% if site.tagline %}
+                <p class="site-tagline">{{ site.tagline }}</p>
+            {% endif %}
+        </div>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+        
+        <!-- Main Navigation -->
+        <nav class="main-navigation" aria-label="Main navigation">
+            <ul class="nav-menu">
+                <!-- Home Link -->
+                <li class="nav-item">
+                    <a href="/" class="nav-link{% if page.url == '/' %} current{% endif %}">Home</a>
+                </li>
+                
+                <!-- Static Pages -->
+                {% set staticPages = collections.pages | sort(false, false, 'data.order') %}
+                {% for page in staticPages %}
+                    {% if page.data.showInNav !== false %}
+                        <li class="nav-item">
+                            <a href="{{ page.url }}" class="nav-link{% if page.url == page.url %} current{% endif %}">
+                                {{ page.data.navTitle or page.data.title }}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                
+                <!-- Collections -->
+                {% set allPosts = collections.allPosts %}
+                {% set uniqueCollections = allPosts | getUniqueCollections %}
+                {% for collectionName in uniqueCollections %}
+                    {% set collectionData = collections.collectionData | find('name', collectionName) %}
+                    {% if not collectionData or collectionData.showInNav !== false %}
+                        <li class="nav-item{% if collectionData and collectionData.hasSubmenu %} has-submenu{% endif %}">
+                            <a href="/collections/{{ collectionName | slug }}/" class="nav-link{% if page.url.includes('/collections/' + collectionName) %} current{% endif %}">
+                                {{ (collectionData and collectionData.displayName) or (collectionName | title) }}
+                            </a>
+                            
+                            {% if collectionData and collectionData.hasSubmenu and collectionData.submenuCollections %}
+                                <ul class="submenu">
+                                    {% for subCollection in collectionData.submenuCollections %}
+                                        <li class="submenu-item">
+                                            <a href="/collections/{{ subCollection | slug }}/" class="submenu-link">
+                                                {{ subCollection | title }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                
+                <!-- Additional Custom Links -->
+                {% if site.customNavLinks %}
+                    {% for link in site.customNavLinks %}
+                        <li class="nav-item">
+                            <a href="{{ link.url }}" class="nav-link"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                                {{ link.title }}
+                                {% if link.external %}<span class="external-icon" aria-hidden="true">↗</span>{% endif %}
+                            </a>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </nav>
+        
+        <!-- Search (optional) -->
+        {% if site.enableSearch %}
+            <div class="header-search">
+                <form class="search-form" role="search">
+                    <label for="search-input" class="sr-only">Search</label>
+                    <input type="search" id="search-input" class="search-input" placeholder="Search...">
+                    <button type="submit" class="search-button" aria-label="Submit search">
+                        <span class="search-icon" aria-hidden="true">🔍</span>
+                    </button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+</header>

@@ -1,0 +1,64 @@
+---
+layout: home.njk
+title: Welcome to Explosive Website
+description: A flexible 11ty website template with collections and static pages
+showPageTitle: false
+showFeaturedPosts: true
+featuredPostsTitle: Latest Posts
+featuredPostsCount: 6
+showFeaturedCollections: true
+featuredCollectionsTitle: Explore Our Collections
+featuredCollectionsCount: 4
+hero:
+  title: Welcome to Explosive Website
+  subtitle: Building Amazing Web Experiences
+  description: |
+    <p>Discover our flexible 11ty website template that makes it easy to create beautiful, organized content with collections and static pages.</p>
+    <p>Perfect for blogs, documentation sites, portfolios, and more!</p>
+  backgroundImage: /assets/images/hero-bg.jpg
+  ctaButton:
+    text: Get Started
+    url: /about/
+customSections:
+  - title: Why Choose Explosive?
+    class: features-section
+    content: |
+      <div class="features-grid">
+        <div class="feature-item">
+          <h3>🚀 Fast & Modern</h3>
+          <p>Built with 11ty for lightning-fast static site generation and modern web standards.</p>
+        </div>
+        <div class="feature-item">
+          <h3>📱 Responsive Design</h3>
+          <p>Looks great on all devices with mobile-first responsive design principles.</p>
+        </div>
+        <div class="feature-item">
+          <h3>🎨 Flexible Collections</h3>
+          <p>Organize your content with powerful collections that can be nested and cross-referenced.</p>
+        </div>
+        <div class="feature-item">
+          <h3>⚡ Easy to Use</h3>
+          <p>Simple Markdown-based content creation with powerful templating capabilities.</p>
+        </div>
+      </div>
+---
+
+## Welcome to Your New Website
+
+This is the home page of your Explosive Website template. You can customize this content by editing the `src/index.md` file.
+
+### What You Can Do
+
+- **Create Static Pages**: Add pages to the `src/pages/` directory
+- **Write Posts**: Add blog posts and articles to `src/posts/`
+- **Organize with Collections**: Use the `collections` front matter to categorize your posts
+- **Customize Templates**: Modify the templates in `src/_layouts/` and `src/_includes/`
+
+### Getting Started
+
+1. Edit this home page by modifying `src/index.md`
+2. Create your first post in `src/posts/`
+3. Add static pages to `src/pages/`
+4. Customize the site configuration in `src/_data/site.json`
+
+Enjoy building with the Explosive Website template!

@@ -1,0 +1,55 @@
+{
+  "title": "Explosive Website",
+  "description": "A flexible 11ty website template with collections and static pages",
+  "url": "https://explosive-website.com",
+  "tagline": "Building amazing web experiences",
+  "logo": "/assets/images/logo.png",
+  "enableSearch": true,
+  "showNewsletter": true,
+  "newsletterAction": "/subscribe",
+  "socialLinks": [
+    {
+      "platform": "Twitter",
+      "url": "https://twitter.com/explosive",
+      "icon": "🐦"
+    },
+    {
+      "platform": "GitHub",
+      "url": "https://github.com/explosive",
+      "icon": "🐙"
+    },
+    {
+      "platform": "LinkedIn",
+      "url": "https://linkedin.com/company/explosive",
+      "icon": "💼"
+    }
+  ],
+  "customNavLinks": [
+    {
+      "title": "Contact",
+      "url": "/contact/"
+    }
+  ],
+  "footerLinks": [
+    {
+      "title": "Privacy Policy",
+      "url": "/privacy/"
+    },
+    {
+      "title": "Terms of Service",
+      "url": "/terms/"
+    }
+  ],
+  "footerBottomLinks": [
+    {
+      "title": "Sitemap",
+      "url": "/sitemap.xml"
+    }
+  ],
+  "contactInfo": {
+    "email": "hello@explosive-website.com",
+    "phone": "+1 (555) 123-4567",
+    "address": "123 Web Street, Internet City, IC 12345"
+  },
+  "copyrightText": "All rights reserved."
+}
