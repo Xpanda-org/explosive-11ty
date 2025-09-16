@@ -72,11 +72,39 @@ a {
   color: var(--color-primary);
   text-decoration: none;
   transition: color var(--ease-3), text-decoration var(--ease-3);
+  /* Ensure links have transparent background */
+  background-color: transparent;
 }
 
 a:hover {
   color: var(--color-dark);
   text-decoration: underline;
+  /* Ensure hover state also has transparent background */
+  background-color: transparent;
+}
+
+a:focus {
+  /* Ensure focus state has proper contrast */
+  background-color: transparent;
+  outline: var(--border-size-2) solid var(--color-primary);
+  outline-offset: var(--size-1);
+}
+
+/* Ensure all link variants have transparent backgrounds */
+.content-wrapper a,
+.main-content a,
+p a,
+li a,
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  background-color: transparent !important;
+}
+
+.content-wrapper a:hover,
+.main-content a:hover,
+p a:hover,
+li a:hover,
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
+  background-color: transparent !important;
 }
 
 /* Accessibility utilities using Open Props */
@@ -175,17 +203,21 @@ a:hover {
   border-block-end: var(--border-size-2) solid transparent;
   transition: all var(--ease-3);
   text-decoration: none;
+  /* Ensure navigation links have transparent background */
+  background-color: transparent;
 }
 
 .nav-link:hover,
 .nav-link.current {
   color: var(--color-primary);
   border-block-end-color: var(--color-primary);
+  /* Ensure hover and current states have transparent background */
+  background-color: transparent;
 }
 
 /* Mobile Menu using Open Props */
 .mobile-menu-toggle {
-  display: flex;
+  display: none; /* Hidden by default, shown on mobile */
   flex-direction: column;
   gap: var(--size-1);
   background: none;
@@ -222,7 +254,13 @@ a:hover {
 }
 
 /* Mobile Navigation using Open Props */
-@media (inline-size <= 768px) {
+@media (max-width: 767px) {
+  /* Show mobile menu toggle button on mobile */
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  /* Hide main navigation by default on mobile */
   .main-navigation {
     display: block;
     position: absolute;
@@ -235,6 +273,7 @@ a:hover {
     visibility: hidden;
     transition: all var(--ease-4);
     backdrop-filter: blur(var(--size-1));
+    z-index: var(--layer-4);
   }
 
   .main-navigation.active {
@@ -310,6 +349,37 @@ a:hover {
 .content-wrapper pre {
   max-inline-size: var(--content-max-width);
   margin-inline: auto;
+}
+
+/* Code block styling to override normalize.css dark backgrounds */
+pre,
+code {
+  /* Override normalize.css dark background */
+  background-color: var(--gray-1) !important;
+  color: var(--gray-8) !important;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-2);
+  border-radius: var(--radius-2);
+}
+
+pre {
+  padding: var(--size-4);
+  overflow-x: auto;
+  border: var(--border-size-1) solid var(--gray-3);
+  margin-block: var(--size-4);
+}
+
+code {
+  padding: var(--size-1) var(--size-2);
+  /* Inline code should have slightly different styling */
+  background-color: var(--gray-2) !important;
+}
+
+/* Code inside pre blocks shouldn't have extra padding */
+pre code {
+  padding: 0;
+  background-color: transparent !important;
+  border: none;
 }
 
 /* Allow wider elements like images, tables, grids to use more space */
@@ -545,10 +615,14 @@ a:hover {
 .footer-link {
   color: var(--gray-3);
   transition: color var(--ease-3);
+  /* Ensure footer links have transparent background */
+  background-color: transparent;
 }
 
 .footer-link:hover {
   color: var(--gray-0);
+  /* Ensure footer link hover has transparent background */
+  background-color: transparent;
 }
 
 .footer-bottom {
