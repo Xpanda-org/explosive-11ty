@@ -29,11 +29,12 @@ The Explosive Website Template is designed to handle complex content structures 
 - Skip links for accessibility
 
 ### 🎨 Modern Design System
+- **Open Props integration** for consistent, scalable design tokens
 - Mobile-first responsive design with CSS Grid and Flexbox
-- Comprehensive CSS custom properties for easy theming
+- Comprehensive design system with colors, typography, spacing, and animations
 - Card-based layouts with hover effects and smooth transitions
 - Typography system with web fonts and optimal readability
-- Dark/light theme ready architecture
+- Built-in normalize.css and button components from Open Props
 
 ### 📱 Performance & Accessibility
 - Static site generation for lightning-fast loading
@@ -163,18 +164,30 @@ Edit `src/_data/collectionData.json` to customize collections:
 
 ## 🎨 Customization
 
-### Theming
+### Theming with Open Props
 
-The template uses CSS custom properties for easy theming. Edit `src/assets/css/main.css`:
+The template uses Open Props for consistent design tokens. Customize by overriding Open Props variables in `src/assets/css/main.css`:
 
 ```css
 :root {
-  --color-primary: #3498db;
-  --color-secondary: #2ecc71;
-  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto;
-  /* ... more variables */
+  /* Override Open Props colors */
+  --brand-primary: var(--blue-6);
+  --brand-secondary: var(--green-6);
+  --brand-accent: var(--red-6);
+
+  /* Use Open Props design tokens */
+  --color-primary: var(--brand-primary);
+  --section-spacing: var(--size-8);
+  --card-padding: var(--size-4);
 }
 ```
+
+Available Open Props categories:
+- **Colors**: `--gray-1` to `--gray-12`, `--blue-1` to `--blue-12`, etc.
+- **Sizes**: `--size-1` to `--size-15` for consistent spacing
+- **Typography**: `--font-sans`, `--font-serif`, `--font-mono`
+- **Shadows**: `--shadow-1` to `--shadow-6`
+- **Animations**: `--ease-1` to `--ease-5`, `--ease-in-1` to `--ease-out-5`
 
 ### Site Configuration
 

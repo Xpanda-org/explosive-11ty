@@ -9,11 +9,20 @@
     "start": "eleventy --serve",
     "debug": "DEBUG=Eleventy* eleventy"
   },
-  "keywords": ["eleventy", "11ty", "template", "static-site"],
+  "keywords": [
+    "eleventy",
+    "11ty",
+    "template",
+    "static-site"
+  ],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1",
+    "open-props": "^1.7.16"
   }
 }
