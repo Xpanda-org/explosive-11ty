@@ -1009,3 +1009,40 @@ pre code {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
+
+/* Search Input Styles */
+.search-input {
+  background-color: var(--theme-colors-background, var(--gray-0));
+  color: var(--theme-colors-text, var(--gray-8));
+  border: var(--border-size-1) solid var(--theme-colors-border, var(--gray-4));
+  border-radius: var(--radius-2);
+  padding: var(--size-2) var(--size-3);
+  font-size: var(--font-size-2);
+}
+
+.search-input:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-color: var(--color-primary);
+}
+
+.search-form {
+  display: flex;
+  gap: var(--size-2);
+  align-items: center;
+}
+
+.search-button {
+  background: transparent;
+  border: none;
+  color: var(--color-primary); /* Themed color for icon */
+  cursor: pointer;
+  padding: var(--size-2);
+  border-radius: var(--radius-2);
+  transition: color var(--ease-3), background-color var(--ease-3);
+}
+
+.search-button:hover {
+  color: var(--color-dark);
+  background-color: var(--gray-1);
+}
