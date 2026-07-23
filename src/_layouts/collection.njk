@@ -108,7 +108,7 @@ layout: base.njk
                         {% if post.data.featuredImage %}
                             <div class="post-card-image">
                                 <a href="{{ post.url | url }}">
-                                    <img src="{{ post.data.featuredImage | url }}" alt="{{ post.data.featuredImageAlt or post.data.title }}" loading="lazy">
+                                    <img src="{{ post.data.featuredImage | url }}" data-src="{{ post.data.featuredImage | url }}" alt="{{ post.data.featuredImageAlt or post.data.title }}" loading="lazy">
                                 </a>
                             </div>
                         {% endif %}
