@@ -3,7 +3,7 @@
 NOT PRODUCTION READY!!!
 
 An 11ty (Eleventy) website template which attempts to be customisable and flexible enough for most use cases while providing a reasonable developer experience.
-The template’s collection management and layout systems leverage 11ty to handle complex content structures; Open Props provides theming, and Datastar powers front-end dynamic behaviour.
+The template’s collection management and layout systems leverage 11ty to handle complex content structures, Open Props provides theming, and Datastar powers front-end dynamic behaviour.
 
 ## Features
 
@@ -827,7 +827,7 @@ The template includes sample content to demonstrate all features:
 
 ## Contributing
 
-This repository does not accept any pull requests, at least for the time being.
+This repository does not accept any pull requests or issues, at least for the time being.
 
 ## Someday Maybe
 

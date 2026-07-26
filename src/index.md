@@ -1,19 +1,19 @@
 ---
 layout: home.njk
-title: Welcome to Explosive Website
-description: A flexible 11ty website template with collections and static pages
+title: Explosive Website Template's Documentation
+description: Demonstrating and Documenting the use of the Explosive Websit Template
 showPageTitle: false
 showFeaturedPosts: true
 featuredPostsTitle: Latest Posts
 featuredPostsCount: 6
 showFeaturedCollections: true
-featuredCollectionsTitle: Explore Our Collections
-featuredCollectionsCount: 4
+featuredCollectionsTitle: Dig Deeper
+featuredCollectionsCount: 2
 hero:
   title: Welcome to Explosive Website
-  subtitle: Building Amazing Web Experiences
+  subtitle: Flexible websites with minimum hassale
   description: |
-    <p>Discover our flexible 11ty website template that makes it easy to create beautiful, organized content with collections and static pages.</p>
+    <p>Explosive is a flexible 11ty website template that makes it easy to create beautiful, organized content with collections and static pages.</p>
     <p>Perfect for blogs, documentation sites, portfolios, and more!</p>
   backgroundImage: /assets/images/hero-bg.jpg
   ctaButton:
