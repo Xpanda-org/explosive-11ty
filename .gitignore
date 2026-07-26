@@ -5,3 +5,7 @@
 /.calva
 /.lsp
 /.gemini
+REFACTORING_PLAN.md
+src/_user/includes/left-nav.njk
+src/_user/layouts/sidebar-layout.njk
+.gitignore
