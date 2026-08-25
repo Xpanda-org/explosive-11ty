@@ -2,3 +2,9 @@
 src/_user/layouts/**
 src/_user/includes/**
 
+# Exclude the base layouts and includes too. `dir.includes` and `dir.layouts` point at
+# ../.cache/, so these are ordinary directories inside the input dir and Eleventy renders
+# each one as a standalone page (/_layouts/base/, /_includes/footer/, ...).
+src/_layouts/**
+src/_includes/**
+
