@@ -995,6 +995,11 @@ git add docs/ && git commit -m "Deploy" && git push
 
 Then **Settings → Pages → Source: "Deploy from a branch" → `main` / `/docs`.**
 
+`copy:docs` also does `touch docs/.nojekyll`. Branch-served Pages runs the output through
+Jekyll unless that file is present in the **published** directory — `docs/`, not the repo
+root — and Jekyll drops paths beginning with `_` or `.`. The Actions route never runs
+Jekyll, so the file is irrelevant there and harmless.
+
 Note that after `build:github` the local `_site` contains prefixed paths, so
 `npm run serve` will look broken until you `npm run build` again.
 
