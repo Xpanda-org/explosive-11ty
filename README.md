@@ -112,6 +112,8 @@ src/
 
 ## Content Creation
 
+Markdown content files use kebab-case names (e.g. `my-post-title.md`).
+
 ### Creating Posts
 
 Create a new Markdown file in `src/posts/`:
@@ -720,6 +722,16 @@ carousels:
 - `npm run build:github` - Build for GitHub Pages deployment
 - `npm run copy:docs` - Copy _site contents to docs folder
 - `npm run deploy:github` - Build and prepare for GitHub Pages
+
+### Templating
+
+Layouts (`src/_layouts/`, `src/_user/layouts/`) and includes (`src/_includes/`,
+`src/_user/includes/`) are written in **Nunjucks**; content is Markdown.
+
+### Testing
+
+There is no test framework. Verification is manual: `npm run serve` and check the
+page in a browser.
 
 ### Adding Custom Filters
 
